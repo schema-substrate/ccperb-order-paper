@@ -1,0 +1,1310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Three case studies — CCPERB</title>
+<style>
+@page { size: letter; margin: 0.75in 0.875in; }
+
+:root {
+  --ink: #16140f;
+  --paper: #f6f1e6;
+  --rule: #2a2620;
+  --accent: #7a1112;
+  --mute: #6b6359;
+  --soft: #d8cfbe;
+  --display: "Didot", "Bodoni 72", "Playfair Display", "Big Caslon", "Hoefler Text", Georgia, serif;
+  --body: "Inter", "Söhne", "Helvetica Neue", -apple-system, system-ui, sans-serif;
+  --mono: "Berkeley Mono", "JetBrains Mono", "IBM Plex Mono", "SF Mono", Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { background: var(--paper); color: var(--ink); margin: 0; padding: 0; }
+body { font-family: var(--body); font-size: 10.5pt; line-height: 1.45; -webkit-font-smoothing: antialiased; }
+
+.sheet { max-width: 7.5in; margin: 0 auto; padding: 0.5in 0; }
+
+/* ─── TITLE PAGE ────────────────────────────────────────────────────── */
+.title { padding: 1.0in 0 0.5in; page-break-after: always; }
+.title .kicker {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 8.5pt;
+  color: var(--mute);
+  margin-bottom: 1.6em;
+}
+.title .title-line {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 56pt;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin: 0 0 1em -0.04em;
+}
+.title .title-line em { font-style: italic; color: var(--accent); font-weight: 400; }
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.22in;
+  margin: 1.6em 0 2em;
+}
+.case-card {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  border-top: 1px solid var(--rule);
+  padding-top: 0.7em;
+}
+.case-card-num {
+  font-family: var(--mono);
+  font-size: 8pt;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 0.3em;
+}
+.case-card-name {
+  font-family: var(--display);
+  font-size: 19pt;
+  line-height: 1;
+  margin-bottom: 0.25em;
+}
+.case-card-amt {
+  font-family: var(--mono);
+  font-size: 10.5pt;
+  color: var(--ink);
+  margin-bottom: 0.5em;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+.case-card-desc {
+  font-family: var(--body);
+  font-size: 8.5pt;
+  line-height: 1.4;
+  color: var(--mute);
+}
+
+.title .meta {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4em 1.2em;
+  font-family: var(--mono);
+  font-size: 9pt;
+  color: var(--mute);
+  border-top: 1px solid var(--rule);
+  padding-top: 1em;
+  max-width: 5.5in;
+}
+.title .meta dt { text-transform: uppercase; letter-spacing: 0.12em; }
+.title .meta dd { margin: 0; color: var(--ink); }
+
+/* ─── TABS ──────────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 0;
+  margin: 0 0 0.4em;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 8.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.tabs a {
+  display: block;
+  padding: 0.6em 0.9em;
+  text-decoration: none;
+  color: var(--mute);
+  border-right: 1px solid var(--soft);
+  transition: color 120ms;
+}
+.tabs a:hover { color: var(--accent); }
+.tabs a.close { border-right: none; margin-left: auto; color: var(--accent); }
+
+/* ─── CASE ARTICLE ──────────────────────────────────────────────────── */
+.case { page-break-before: always; padding-top: 0.4in; }
+.case:first-of-type { page-break-before: auto; }
+.casehead {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: end;
+  gap: 0 1.2em;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.6em;
+  margin-bottom: 1.2em;
+}
+.casehead .case-id {
+  font-family: var(--mono);
+  font-size: 9pt;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.casehead .case-amount {
+  font-family: var(--display);
+  font-size: 48pt;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.casehead .case-amount .currency { font-size: 0.55em; vertical-align: 0.32em; color: var(--mute); margin-right: 0.05em; }
+.casehead .case-strap {
+  grid-column: 1 / -1;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 16pt;
+  line-height: 1.25;
+  color: var(--ink);
+  max-width: 6in;
+  margin-top: 0.3em;
+}
+
+/* ─── HEADINGS, PROSE ──────────────────────────────────────────────── */
+h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 22pt;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 1.6em 0 0.7em;
+  padding-top: 0.5em;
+  border-top: 1px solid var(--rule);
+}
+h2 .num {
+  font-family: var(--mono);
+  font-size: 8.5pt;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5em;
+}
+h3 {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 10.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 1.4em 0 0.55em;
+}
+p { margin: 0 0 0.85em; max-width: 6.4in; }
+p.lede { font-size: 12pt; line-height: 1.4; max-width: 6.5in; }
+
+/* ─── PULL QUOTE ───────────────────────────────────────────────────── */
+blockquote {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 17pt;
+  line-height: 1.25;
+  margin: 1.4em 0;
+  padding: 0.2em 0 0.2em 0.7em;
+  border-left: 3px solid var(--accent);
+  color: var(--ink);
+  max-width: 6.5in;
+}
+blockquote cite {
+  display: block;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 8.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--mute);
+  margin-top: 0.7em;
+}
+blockquote cite::before { content: "— "; }
+
+/* ─── TABLES ───────────────────────────────────────────────────────── */
+table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 9pt; margin: 1em 0 1.4em; }
+th, td { text-align: left; padding: 0.55em 0.7em 0.55em 0; border-bottom: 1px solid var(--soft); vertical-align: top; }
+th { font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mute); border-bottom: 1px solid var(--rule); font-weight: 600; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr.highlight td { background: rgba(122, 17, 18, 0.06); border-bottom-color: var(--accent); }
+tr.highlight td:first-child { box-shadow: inset 3px 0 0 var(--accent); padding-left: 0.5em; }
+
+/* ─── DATA STACK ───────────────────────────────────────────────────── */
+.stack {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6in;
+  margin: 1.4em 0;
+  padding: 1em 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.stack .stat .v { font-family: var(--display); font-size: 28pt; line-height: 1; color: var(--accent); display: block; margin-bottom: 0.2em; }
+.stack .stat .l { font-family: var(--mono); font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.12em; color: var(--mute); line-height: 1.35; }
+
+/* ─── UNKNOWNS LIST ────────────────────────────────────────────────── */
+ul.unknowns { list-style: none; padding: 0; margin: 0.8em 0 1.4em; }
+ul.unknowns li {
+  font-family: var(--body);
+  font-size: 10.5pt;
+  padding: 0.55em 0 0.55em 1.4em;
+  border-bottom: 1px solid var(--soft);
+  position: relative;
+}
+ul.unknowns li::before {
+  content: "[ ]";
+  font-family: var(--mono);
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  font-size: 9.5pt;
+  letter-spacing: 0;
+}
+
+/* ─── WALK / CHRONOLOGY ────────────────────────────────────────────── */
+ol.walk, ol.chronology { list-style: none; padding: 0; margin: 1em 0 1.4em; }
+ol.walk li, ol.chronology li {
+  position: relative;
+  padding: 0.75em 0 0.95em 4.6em;
+  border-bottom: 1px solid var(--soft);
+  font-size: 10.5pt;
+  line-height: 1.5;
+}
+ol.walk li .step-num, ol.chronology li .step-num {
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  font-family: var(--mono);
+  font-size: 9pt;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-weight: 600;
+  width: 4em;
+}
+ol.walk li b, ol.chronology li b { font-weight: 600; }
+ol.walk li .big, ol.chronology li .big {
+  font-family: var(--mono);
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 1.0em;
+  white-space: nowrap;
+  background: rgba(122, 17, 18, 0.08);
+  padding: 0.05em 0.35em;
+  border-radius: 1px;
+}
+ol.walk li.leap, ol.chronology li.leap {
+  background: rgba(122, 17, 18, 0.07);
+  margin: 0.5em -0.5em;
+  padding: 1.1em 1em 1.2em 5.1em;
+  border-top: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+ol.walk li.leap .step-num, ol.chronology li.leap .step-num {
+  font-size: 22pt;
+  top: 0.55em;
+  color: var(--accent);
+}
+ol.walk li.leap b, ol.chronology li.leap b {
+  display: block;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 17pt;
+  font-weight: 400;
+  margin-bottom: 0.35em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+/* ─── VECTORS LIST ─────────────────────────────────────────────────── */
+ol.vectors {
+  list-style: none;
+  padding: 0;
+  margin: 1.4em 0 1.4em;
+  counter-reset: v;
+}
+ol.vectors li {
+  counter-increment: v;
+  position: relative;
+  padding: 1em 0 0.6em 4.2em;
+  border-top: 1px solid var(--rule);
+}
+ol.vectors li::before {
+  content: counter(v);
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  font-family: var(--display);
+  font-size: 32pt;
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  width: 3em;
+  text-align: left;
+}
+ol.vectors li h3.vector-name {
+  font-family: var(--body);
+  font-size: 10.5pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.55em;
+  color: var(--ink);
+  line-height: 1.25;
+}
+ol.vectors li p {
+  margin: 0 0 0.6em;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  max-width: 6.4in;
+}
+ol.vectors li p b { font-weight: 600; }
+
+/* ─── ORDER PAPER MAPPING ──────────────────────────────────────────── */
+ol.mapping { padding-left: 0; counter-reset: q; list-style: none; margin: 0.8em 0 1.4em; }
+ol.mapping li {
+  counter-increment: q;
+  padding: 0.7em 0 0.7em 2.2em;
+  border-bottom: 1px solid var(--soft);
+  position: relative;
+  font-size: 10.5pt;
+}
+ol.mapping li::before {
+  content: "(" counter(q, lower-alpha) ")";
+  font-family: var(--mono);
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  font-size: 10pt;
+  font-weight: 600;
+}
+ol.mapping li b { font-weight: 600; }
+
+/* ─── SCOPE NOTE ───────────────────────────────────────────────────── */
+.scope {
+  margin: 1.4em 0;
+  padding: 0.9em 1em;
+  background: rgba(122, 17, 18, 0.05);
+  border-left: 3px solid var(--accent);
+  font-size: 9.5pt;
+  font-family: var(--body);
+  max-width: 6.5in;
+}
+.scope b {
+  font-family: var(--body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 8.5pt;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4em;
+}
+
+/* ─── SOURCES ──────────────────────────────────────────────────────── */
+.sources {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-size: 8pt;
+  line-height: 1.5;
+  color: var(--mute);
+  column-count: 2;
+  column-gap: 0.4in;
+  column-rule: 1px solid var(--soft);
+  font-family: var(--mono);
+  page-break-before: always;
+}
+.sources h3 {
+  font-family: var(--mono);
+  font-size: 8pt;
+  column-span: all;
+  margin-top: 0;
+  color: var(--ink);
+}
+.sources p { margin: 0 0 0.55em; break-inside: avoid; }
+.sources p b { color: var(--ink); font-weight: 600; }
+
+/* ─── COLOPHON ─────────────────────────────────────────────────────── */
+.colophon {
+  margin-top: 1.5em;
+  padding-top: 1em;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 7.5pt;
+  color: var(--mute);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ─── PRINT ────────────────────────────────────────────────────────── */
+@media print {
+  body { background: white; }
+  .sheet { padding: 0; }
+  .tabs { display: none; }
+}
+
+/* ─── APP SHELL (SPA) ──────────────────────────────────────────────── */
+@media screen {
+  body { padding-top: 5.5em; background: #e8e2d2; }
+  .sheet {
+    background: var(--paper);
+    padding: 0.8in 0.88in;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-height: 100vh;
+    border-radius: 4px;
+  }
+  .tabs {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 1em;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    margin: 0;
+    border-top: 4px solid var(--accent);
+  }
+  .tabs a { border-right: 1px solid var(--soft); font-size: 8pt; padding: 1em 1.4em; }
+  .tabs a.active {
+    border-bottom: 3px solid var(--accent);
+    color: var(--ink);
+    background: rgba(122, 17, 18, 0.03);
+    padding-bottom: calc(1em - 2px);
+  }
+  
+  /* Hide sections by default initially (JS will show them) */
+  .js-enabled section.case,
+  .js-enabled article.case,
+  .js-enabled section.title,
+  .js-enabled section.sources {
+    display: none;
+    animation: fadeIn 0.15s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── CHARTS ───────────────────────────────────────────────────────── */
+.chart-container {
+  margin: 2em 0; padding: 1.5em; background: white;
+  border: 1px solid var(--rule); border-radius: 4px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.05); page-break-inside: avoid;
+}
+.chart-title {
+  font-family: var(--body); font-size: 10pt; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 2em; color: var(--ink);
+}
+.bar-chart {
+  display: flex; align-items: flex-end; justify-content: center;
+  gap: 15%; height: 160px; padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--rule);
+}
+.bar-col {
+  flex: 1; max-width: 80px; display: flex; flex-direction: column;
+  justify-content: flex-end; align-items: center; position: relative; height: 100%;
+}
+.bar-fill {
+  width: 100%; background: var(--accent); min-height: 2px;
+  opacity: 0.9; border-top-left-radius: 2px; border-top-right-radius: 2px;
+}
+.bar-fill.muted { background: var(--mute); opacity: 0.3; }
+.bar-fill.medium { background: var(--mute); opacity: 0.8; }
+.bar-label {
+  position: absolute; bottom: -2.5em; font-family: var(--mono);
+  font-size: 8pt; color: var(--mute); text-align: center;
+  white-space: nowrap; line-height: 1.2;
+}
+.bar-value {
+  position: absolute; top: -1.8em; font-family: var(--mono);
+  font-size: 9pt; font-weight: 600; color: var(--ink); white-space: nowrap;
+}
+.h-bar-chart {
+  display: flex; flex-direction: column; gap: 1em; margin: 1.5em 0 0.5em;
+}
+.h-bar-row { display: flex; align-items: center; }
+.h-bar-label {
+  width: 120px; font-family: var(--mono); font-size: 8pt;
+  line-height: 1.2; color: var(--mute); text-align: right; padding-right: 1em;
+}
+.h-bar-track {
+  flex: 1; height: 22px; background: rgba(0,0,0,0.03);
+  border-radius: 2px; position: relative;
+}
+.h-bar-fill {
+  height: 100%; background: var(--accent); border-radius: 2px;
+  display: flex; align-items: center; padding: 0 0.5em;
+}
+.h-bar-fill.muted { background: var(--mute); opacity: 0.5; }
+.h-bar-value {
+  font-family: var(--mono); font-size: 8.5pt; font-weight: 600;
+  color: white; width: 100%; text-align: right;
+}
+
+ 
+ 
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<section class="title" id="title">
+  <h1 class="title-line">Four cases.<br>One architecture.<br><em>None disclosed.</em></h1>
+
+  <div class="case-grid">
+    <a href="#case-01" class="case-card">
+      <div class="case-card-num">Case 01</div>
+      <div class="case-card-name">Rennie</div>
+      <div class="case-card-amt">$22,800,000</div>
+      <div class="case-card-desc">CCPERB-certified gift to the National Gallery of Canada, 2025. The accidentally-published number.</div>
+    </a>
+    <a href="#case-02" class="case-card">
+      <div class="case-card-num">Case 02</div>
+      <div class="case-card-name">Audain</div>
+      <div class="case-card-amt">$91,300,000</div>
+      <div class="case-card-desc">Donation to the Musée national des beaux-arts du Québec, 2026. The closed loop.</div>
+    </a>
+    <a href="#case-03" class="case-card">
+      <div class="case-card-num">Case 03</div>
+      <div class="case-card-name">Heffel</div>
+      <div class="case-card-amt">$678,500</div>
+      <div class="case-card-desc">Caillebotte sale price that triggered the only public test of the regime, 2017–19. The legislated permissiveness.</div>
+    </a>
+    <a href="#case-04" class="case-card">
+      <div class="case-card-num">Case 04</div>
+      <div class="case-card-name">Langmann</div>
+      <div class="case-card-amt">$50,000</div>
+      <div class="case-card-desc">The threshold above which CCPERB requires two appraisals — and the one bypass it grants by name. The appraiser pool, with an address.</div>
+    </a>
+  </div>
+
+  <dl class="meta">
+    <dt>For</dt><dd>Hon. Jenny Kwan, MP — Vancouver East</dd>
+    <dt>Pairs with</dt><dd>Order Paper question, delivered to East 10th constituency office, 2026-04-13</dd>
+    <dt>Date</dt><dd>2026-04-21</dd>
+  </dl>
+</section>
+
+
+<nav class="tabs">
+  <a href="#title" class="active">Overview</a>
+  <a href="#case-01">01 · Rennie</a>
+  <a href="#case-02">02 · Audain</a>
+  <a href="#case-03">03 · Heffel</a>
+  <a href="#case-04">04 · Langmann</a>
+  <a href="#case-05">05 · Wilson</a>
+  <a href="#close" class="close">→ The pattern</a>
+</nav>
+
+
+<article id="case-01" class="case">
+  <header class="casehead">
+    <div class="case-id">Case 01 · Rennie</div>
+    <div class="case-amount"><span class="currency">$</span>22,800,000</div>
+    <div class="case-strap">A single number, certified by a federal board the public is not allowed to know about, attached to a single donor we already know everything else about.</div>
+  </header>
+
+  <!-- 01 THE GIFT -->
+  <section>
+    <h2><span class="num">01 · The gift</span>One donor, four gifts, two hundred and eighty-four works</h2>
+    <p class="lede">Bob Rennie has given the National Gallery of Canada more contemporary art than any single donor in its history. He has done so in four named tranches over fourteen years. The most recent two arrived inside the last ten months.</p>
+
+    <table>
+      <thead>
+        <tr><th>Year</th><th>Works</th><th class="num">Stated value (CAD)</th><th>Notable contents</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2012</td><td>1</td><td class="num">— not disclosed</td><td>Brian Jungen, <i>Court</i> (2004)</td></tr>
+        <tr><td>2017</td><td>197</td><td class="num">≈ $12,000,000</td><td>Wallace · Graham · Moppett · Jungen · Farmer</td></tr>
+        <tr class="highlight"><td>2025</td><td>61</td><td class="num">$22,800,000</td><td><b>40 Rodney Graham</b> · 10 Mona Hatoum · 3 Ai Weiwei · Dan Graham</td></tr>
+        <tr><td>2026</td><td>24</td><td class="num">≈ $33,000,000</td><td><b>17 Christopher Williams photo-conceptual works</b> · Jin-me Yoon, <i>Souvenirs of the Self</i></td></tr>
+      </tbody>
+    </table>
+
+    <div class="chart-container">
+      <div class="chart-title">Implied Average Value Per Work By Tranche</div>
+      <div class="bar-chart">
+        <div class="bar-col">
+          <div class="bar-value">$60,913</div>
+          <div class="bar-fill muted" style="height: 4%"></div>
+          <div class="bar-label">2017<br>197 works</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar-value">$373,770</div>
+          <div class="bar-fill medium" style="height: 27%"></div>
+          <div class="bar-label">2025<br>61 works</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar-value">$1,375,000</div>
+          <div class="bar-fill" style="height: 100%"></div>
+          <div class="bar-label">2026<br>24 works</div>
+        </div>
+      </div>
+    </div>
+
+    <p>While the volume of works has sharply decreased across the disclosed tranches, the certified value of each tranche has violently escalated. Of those four numbers, only the third — <b>$22,800,000</b> — is publicly attributed to CCPERB by name. It is the rare moment the regime publishes one of its own valuations, and it does so because the donor wanted the press release.</p>
+
+    <blockquote>
+      The $22.8-million figure is the evaluation approved by the Canadian Cultural Property Export Review Board, the organization that can issue Rennie with a tax receipt for that amount.
+      <cite>The Globe and Mail · 14 July 2025</cite>
+    </blockquote>
+
+    <p>Rennie himself estimates the lifetime total of his family's gifts to NGC at approximately <b>$65,000,000</b>, with stated intent to add up to $50,000,000 more by his 75th birthday. The Gallery, asked, declined to confirm.</p>
+  </section>
+
+  <!-- 02 THE NUMBER -->
+  <section>
+    <h2><span class="num">02 · The number</span>What $22,800,000 of certified cultural property actually is</h2>
+
+    <p>Cultural-property certification is not a normal charitable receipt. It is the most generous receipt the federal income tax system issues. The stack, per CRA / KPMG / BDO published guidance:</p>
+
+    <table>
+      <thead><tr><th>Component</th><th>Effect</th></tr></thead>
+      <tbody>
+        <tr><td>Donation tax credit (federal + provincial)</td><td>≈ 50% of certified value, refundable against income tax</td></tr>
+        <tr><td>Capital gains on appreciated property</td><td><b>Zero</b> inclusion (vs. 50% normal inclusion)</td></tr>
+        <tr><td>Annual income limit</td><td>Deduct against up to <b>100%</b> of net income (vs. 75% normal)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="stack">
+      <div class="stat"><span class="v">~77%</span><span class="l">Effective public subsidy on certified cultural property, top bracket, low cost basis</span></div>
+      <div class="stat"><span class="v">$17.5M</span><span class="l">Approx. foregone federal + provincial revenue on the 2025 Rennie gift alone</span></div>
+      <div class="stat"><span class="v">$0</span><span class="l">Cash contribution from donor toward shipping or evaluation, beyond what is itself receipted</span></div>
+    </div>
+
+    <p>This is not a hidden subsidy. It is in the act and the bulletins. What is hidden is which works at which prices — the per-certification data that would let the public see how the subsidy is distributed and on what valuations it rests.</p>
+  </section>
+
+  <!-- 03 THE WALK -->
+  <section>
+    <h2><span class="num">03 · The walk</span>From an auction price to a certified valuation, step by step</h2>
+
+    <p class="lede">The 2025 Rennie gift contains 40 works by Rodney Graham (1949–2022), the Vancouver-school photo-conceptualist whose lightbox transparencies define the medium. Walk one specific gift through, step by step, and the structural moment becomes visible.</p>
+
+    <ol class="walk">
+      <li>
+        <span class="step-num">01</span>
+        <b>Take a Rodney Graham work that has been to public auction.</b>
+        On 30 May 2018, <i>Oxfordshire Oak, Swalcliffe</i> (1990) sold at Heffel for <span class="big">$175,250 CAD</span> — the highest verified single-work Rodney Graham realization in the Canadian auction record. The lightbox <i>Paradoxical Western Scene</i> (2006) sold at Phillips New York in 2019 for <span class="big">US$56,250</span>.
+      </li>
+      <li>
+        <span class="step-num">02</span>
+        <b>That is the auction floor.</b>
+        Two strangers, a hammer, no federal tax credit. Anyone — institution, collector, dealer — could have bid. The number is what someone actually paid.
+      </li>
+      <li>
+        <span class="step-num">03</span>
+        <b>Now look at the 2025 gift.</b>
+        Forty Rodney Graham works, blended into a <span class="big">$22,800,000 CAD</span> certification with twenty-one other works (10 Mona Hatoum, 3 Ai Weiwei, Dan Graham, and others). The per-work breakdown is not published. The total is.
+      </li>
+      <li>
+        <span class="step-num">04</span>
+        <b>Now do the arithmetic.</b>
+        Assign the entire $22.8M to the forty Graham works — giving zero value to the Hatoums, the Ai Weiweis, the Dan Graham. The implied per-Graham value is <span class="big">$570,000 CAD</span>. That is more than three times the highest verified Graham realization at Heffel, and approximately seven times the confirmed Graham lightbox at Phillips. The Hatoums and Ai Weiweis are not zero. <b>The real implied per-Graham value sits higher than this bound.</b>
+
+        <div class="chart-container" style="margin-left: -1em; max-width: 5in;">
+          <div class="chart-title" style="margin-bottom: 1em;">The Valuation Gap: Rodney Graham Works</div>
+          <div class="h-bar-chart">
+            <div class="h-bar-row">
+              <div class="h-bar-label">Verified public<br>auction max (CAD)</div>
+              <div class="h-bar-track">
+                <div class="h-bar-fill muted" style="width: 30%">
+                  <span class="h-bar-value">$175,250</span>
+                </div>
+              </div>
+            </div>
+            <div class="h-bar-row">
+              <div class="h-bar-label">Implied minimum<br>CCPERB value</div>
+              <div class="h-bar-track">
+                <div class="h-bar-fill" style="width: 100%">
+                  <span class="h-bar-value">$570,000+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="leap">
+        <span class="step-num">↓</span>
+        <b>This is the leap.</b>
+        The number on the right of step 02 was set by a public market. The number on the right of step 04 was set by an appraiser drawn from a concentrated pool of dealers, gallerists, and current or former CCPERB board members — players in the same market whose own holdings appreciate as the canon they certify appreciates. The first is a market signal. The second is the market ratifying its own price.
+      </li>
+      <li>
+        <span class="step-num">05</span>
+        <b>The federal government writes the tax credit against step 04.</b>
+        Not against step 02. At the top bracket on appreciated cultural property, the public underwrites approximately 77% of the certified value. On this gift alone, that is roughly <span class="big">$17,500,000 CAD</span> of foregone federal and provincial revenue.
+      </li>
+    </ol>
+
+    <blockquote>
+      Rennie's gift includes works that the gallery could never afford to buy.
+      <cite>Jean-François Bélisle, Director, National Gallery of Canada · The Globe and Mail · 14 July 2025</cite>
+    </blockquote>
+  </section>
+</article>
+
+
+<article id="case-02" class="case">
+  <header class="casehead">
+    <div class="case-id">Case 02 · Audain</div>
+    <div class="case-amount"><span class="currency">$</span>91,300,000</div>
+    <div class="case-strap">A donor who chairs the foundation that holds the work he donates to the institution he previously chaired. The arm's-length requirement, defeated by architecture rather than valuation.</div>
+  </header>
+
+  <!-- 01 THE ARCHITECTURE -->
+  <section>
+    <h2><span class="num">01 · The architecture</span>Two decades of named gifts, one closing loop</h2>
+
+    <p class="lede">Michael Audain — chair of Polygon Homes, age 88, the largest individual cultural philanthropist in British Columbia — has constructed, through a long series of named gifts and chair appointments, what is in effect a single closed circuit. Each donation is independently arm's-length. The architecture as a whole is not.</p>
+
+    <table>
+      <thead>
+        <tr><th>Year</th><th>Recipient</th><th>Item</th><th class="num">Stated value (CAD)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2006</td><td>National Gallery of Canada</td><td>Audain Endowment for Contemporary Canadian Art</td><td class="num">$2,000,000</td></tr>
+        <tr><td>2007</td><td>National Gallery of Canada</td><td>Audain Curator of Indigenous Art Endowment</td><td class="num">$2,000,000</td></tr>
+        <tr><td>2014</td><td>Polygon Gallery (formerly Presentation House)</td><td>Naming gift, with Polygon Homes</td><td class="num">$4,000,000</td></tr>
+        <tr><td>2016</td><td>Audain Art Museum, Whistler</td><td>~150 works, founding gift to museum he founded</td><td class="num">— not disclosed</td></tr>
+        <tr><td>2021</td><td>Vancouver Art Gallery (pledge)</td><td>Cash, new building (largest cash gift to any Canadian gallery)</td><td class="num">$100,000,000</td></tr>
+        <tr class="highlight"><td>2026</td><td>Musée national des beaux-arts du Québec</td><td>37 Riopelle works ($76.9M) + endowment ($14.4M)</td><td class="num">$91,300,000</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 02 THE CHAIRS -->
+  <section>
+    <h2><span class="num">02 · The chairs</span>Where the same name keeps appearing on the institutional letterhead</h2>
+
+    <p>For each donation above, an arm's-length appraisal is required. For each, the regime takes that requirement to be satisfied at the level of the individual appraiser. Look at the institutional roles:</p>
+
+    <table>
+      <thead><tr><th>Institution</th><th>Audain's role</th><th>Period</th></tr></thead>
+      <tbody>
+        <tr><td>National Gallery of Canada Board of Trustees</td><td>Chair</td><td>2009–2013</td></tr>
+        <tr><td>NGC Foundation</td><td>Director</td><td>2009–2014</td></tr>
+        <tr><td>Vancouver Art Gallery Board of Trustees</td><td>Past Chair</td><td>—</td></tr>
+        <tr><td>Audain Foundation</td><td>Founder, Chair</td><td>1997 — present</td></tr>
+        <tr><td>Audain Art Museum Foundation</td><td>Chair</td><td>2016 — present</td></tr>
+        <tr><td>Jean Paul Riopelle Foundation</td><td>Chair</td><td>— present</td></tr>
+      </tbody>
+    </table>
+
+    <p>The Audain Art Museum, opened 2016, holds his collection. He founded it. He chairs its foundation. The Riopelle Foundation holds Riopelle works he donates to MNBAQ; he chairs it. The National Gallery of Canada received $4M of named endowments and a portfolio of works from him; he previously chaired its board.</p>
+  </section>
+
+  <!-- 03 THE WALK -->
+  <section>
+    <h2><span class="num">03 · The walk</span>How the closed loop arrives at certification</h2>
+
+    <p class="lede">Audain's case is structurally distinct from Rennie's. The numerical leap between auction floor and certified value — the centre of Case 01 — is mostly not present here: top Riopelle works realize <b>CAD $2.28M to $7.4M</b> at Heffel, and the 2026 MNBAQ gift averages $2.08M per work, in line with the upper auction record. The leap, in this case, is not in the arithmetic. It is in the structure.</p>
+
+    <ol class="walk">
+      <li>
+        <span class="step-num">01</span>
+        <b>The donor donates from his own collection.</b>
+        Audain donated approximately 150 works as the founding gift to the Audain Art Museum, Whistler — a museum he founded in 2016, which bears his name, and whose foundation he chairs.
+      </li>
+      <li>
+        <span class="step-num">02</span>
+        <b>The recipient institution is one the donor controls or recently chaired.</b>
+        Of the major recipients in the table above, three were chaired or co-founded by Audain himself, one is named for him, and the National Gallery of Canada was chaired by him 2009–2013, with continuing Foundation directorship through 2014.
+      </li>
+      <li>
+        <span class="step-num">03</span>
+        <b>The valuation appraiser is required to be at arm's length.</b>
+        CCPERB's Directive on Monetary Appraisals requires arm's-length appraisal reports based on relevant sales evidence and market conditions. Above CAD $50,000 per work, two appraisals are required — unless the appraisal is provided by a committee of the Art Dealers Association of Canada (ADAC) or the National Archival Appraisal Board (NAAB), in which case one suffices.
+      </li>
+      <li>
+        <span class="step-num">04</span>
+        <b>The pool from which arm's-length appraisers are drawn is itself concentrated.</b>
+        The current CCPERB board includes Vancouver dealer Monte Clark, owner of Monte Clark Gallery (founded 1992, located in the Armoury District). Clark is also a past board member of the Art Dealers Association of Canada — the body whose appraisal committee can substitute for two independent appraisals at the $50K+ threshold. He deals in the same Vancouver-school market category that defines the contemporary BC holdings flowing through this regime.
+      </li>
+      <li class="leap">
+        <span class="step-num">↓</span>
+        <b>This is the leap.</b>
+        The "arm's length" requirement is satisfied at every individual node — each appraiser is technically at arm's length from each donor. The architecture as a whole is not. When one figure chairs the foundation that owns the museum that receives his collection, chairs the foundation that holds the work he donates to a different recipient, and previously chaired the board of his other major recipients — the loop is closed without any single arm's-length relationship being violated. Reflexivity is achieved by the structure, not by any particular pair of hands.
+      </li>
+      <li>
+        <span class="step-num">05</span>
+        <b>The CCPERB tax credit is granted regardless.</b>
+        The disclosure of which appraiser, at what value, on which work, in what fiscal year — is not.
+      </li>
+    </ol>
+  </section>
+</article>
+
+
+<article id="case-03" class="case">
+  <header class="casehead">
+    <div class="case-id">Case 03 · Heffel</div>
+    <div class="case-amount"><span class="currency">$</span>678,500</div>
+    <div class="case-strap">The only public moment when the regime was tested. The legislative response was to make the regime more permissive, not less. The disclosure question was never reached.</div>
+  </header>
+
+  <!-- 01 THE CHRONOLOGY -->
+  <section>
+    <h2><span class="num">01 · The chronology</span>What happens when someone takes the regime to court</h2>
+
+    <p class="lede">In July 2017 Heffel Fine Art Auction House sold a small Caillebotte oil — <i>Iris bleus, jardin du Petit Gennevilliers</i> (1892), $678,500 to an English gallery — and applied for an export permit. CCPERB refused. What followed is the only public stress-test the regime has ever received. The structural finding is in the timeline of how the federal government chose to respond.</p>
+
+    <ol class="chronology">
+      <li>
+        <span class="step-num">JUL 2017</span>
+        <b>Sale and refused export.</b>
+        Heffel sells <i>Iris bleus</i> at auction for <span class="big">$678,500 CAD</span> to a UK gallery; applies for cultural-property export permit the next day. CCPERB refuses, declaring the work "outstandingly significant" and of "national importance" to Canada. Only one other Caillebotte exists in any Canadian collection.
+      </li>
+      <li>
+        <span class="step-num">JUN 2018</span>
+        <b>Federal Court quashes CCPERB.</b>
+        Justice Michael Manson rules that CCPERB's interpretation of "national importance" applied to a French painter's work was "unreasonable." Quashes the decision; orders rehearing by a different panel.
+      </li>
+      <li>
+        <span class="step-num">MAR 2019</span>
+        <b>The federal government acts before the appeal.</b>
+        While the Crown's appeal is still pending at the Federal Court of Appeal, the March 2019 federal budget <b>eliminates the "national importance" criterion from the test for tax certification</b> of cultural property. The criterion is retained only for export licences. The legislative change is not contingent on the appeal's outcome.
+      </li>
+      <li>
+        <span class="step-num">APR 2019</span>
+        <b>Federal Court of Appeal reverses.</b>
+        Justice Richard Boivin rules that CCPERB's interpretation should be reviewed on a standard of reasonableness, defers to the board, restores the original refusal. Heffel does not seek leave to appeal to the Supreme Court of Canada.
+      </li>
+      <li class="leap">
+        <span class="step-num">↓</span>
+        <b>This is the leap.</b>
+        Two months before the courts settled the question in the regime's favour, the federal government had already legislated. And it had legislated in the direction of <i>removing</i> a constraint on certification, not adding one. The only public test of the regime resolved with the regime's tax-certification scope expanded by act of Parliament. Disclosure of who, what, and how much — was not at issue in the litigation, and was not reached.
+      </li>
+    </ol>
+
+    <blockquote>
+      In particular, the Board could continue to interpret the "national importance" criterion very broadly such that almost any work can be considered to be of national importance.
+      <cite>Heffel Fine Art Auction House, statement on the Federal Court of Appeal decision · 2019</cite>
+    </blockquote>
+
+    <p>The auction house, in defeat, named the regime's discretionary scope. The government, before the appeal had even been decided, had already moved to widen it on the tax side.</p>
+  </section>
+</article>
+
+
+<article id="case-04" class="case">
+  <header class="casehead">
+    <div class="case-id">Case 04 · Langmann</div>
+    <div class="case-amount"><span class="currency">$</span>50,000</div>
+    <div class="case-strap">Not the size of a gift. The threshold above which two appraisals are required — except when the appraisal comes from one specific committee, currently co-chaired by a member of one specific Vancouver gallery family.</div>
+  </header>
+
+  <!-- 01 THE THRESHOLD -->
+  <section>
+    <h2><span class="num">01 · The threshold</span>The one bypass the regime grants by name</h2>
+
+    <p class="lede">CCPERB requires two arm's-length appraisals for any donation above $50,000 in fair market value. There is exactly one permitted shortcut. The regime states it on its own website:</p>
+
+    <blockquote>
+      ADAC is the only fine art appraisal service permitted by CCPERB to prepare one appraisal report for donations over CAD $50,000 in value.
+      <cite>Art Dealers Association of Canada · "Learn More About Appraisals" · ad-ac.ca</cite>
+    </blockquote>
+
+    <p>One Toronto-based industry association — the Art Dealers Association of Canada (ADAC) — is named, by the federal regulator, as the sole body whose single appraisal substitutes for the two-appraiser requirement. The committee inside ADAC that issues those appraisals is the ADAC Appraisal Committee. Above the $50,000 threshold, virtually every certified-cultural-property donation in Canada either goes through two independent appraisers — or through this one committee.</p>
+  </section>
+
+  <!-- 02 THE GALLERY -->
+  <section>
+    <h2><span class="num">02 · The gallery</span>2117 Granville Street, Vancouver</h2>
+
+    <p>Uno Langmann Limited is a second-generation Vancouver gallery, founded 1977 — the same year the <i>Cultural Property Export and Import Act</i> was enacted. Specialization: 18th, 19th, and early-20th-century European and North American paintings. Founder: Uno Langmann, originally from Denmark, also founded Sotheby's Parke Bernet's first Northwest representative office in Vancouver in the late 1970s.</p>
+
+    <h3>Uno Langmann · the founder</h3>
+    <ul class="unknowns" style="list-style: none;">
+      <li>Past President, Art Dealers Association of Canada (2007).</li>
+      <li>Founding member, Canadian Association of Personal Property Appraisers.</li>
+      <li>Past President, Canadian Antique Dealers Association.</li>
+      <li>2007 ADAC Lifetime Achievement Award. 2015 honorary Doctor of Laws, University of British Columbia.</li>
+      <li>Personal donor to public collections: 35 works by Charles John Collings to the Vancouver Art Gallery; an 18th-century Japanese screen from the Frank Lloyd Wright Collection to the Victoria Art Gallery; 18,000+ historical photographs to the UBC Library Special Collections.</li>
+    </ul>
+
+    <h3>Jeanette Langmann · the second generation</h3>
+    <ul class="unknowns" style="list-style: none;">
+      <li>Director, Uno Langmann Limited Fine Art.</li>
+      <li><b>Co-Chair, ADAC Appraisal Committee</b> — the very committee whose single appraisal CCPERB accepts in lieu of two.</li>
+      <li>Past President and current board member, Art Dealers Association of Canada.</li>
+      <li>Advises the federal export-review process from Ottawa.</li>
+      <li>Expert appraiser on CBC's <i>Canadian Antiques Roadshow</i>.</li>
+    </ul>
+  </section>
+
+  <!-- 03 THE WALK -->
+  <section>
+    <h2><span class="num">03 · The walk</span>How the bypass is constructed and where the same family appears on both sides of it</h2>
+
+    <ol class="walk">
+      <li>
+        <span class="step-num">01</span>
+        <b>Set the threshold.</b>
+        For a donation valued above <span class="big">$50,000 CAD</span>, CCPERB ordinarily requires two arm's-length appraisals. This is the regime's structural protection against a single appraiser controlling the certified value of a high-value donation.
+      </li>
+      <li>
+        <span class="step-num">02</span>
+        <b>Permit one substitution.</b>
+        The single shortcut: the ADAC Appraisal Committee's review can substitute for both required appraisals. CCPERB names ADAC, by name, as the only fine art appraisal service permitted to do this.
+      </li>
+      <li>
+        <span class="step-num">03</span>
+        <b>Identify who runs the committee.</b>
+        The current Co-Chair of the ADAC Appraisal Committee is Jeanette Langmann, Director of Uno Langmann Limited Fine Art (Vancouver, 2117 Granville Street). She is also past President of ADAC and a current ADAC board member. She advises the federal export-review process directly.
+      </li>
+      <li>
+        <span class="step-num">04</span>
+        <b>Identify the same gallery as a participant in the regime it helps administer.</b>
+        Uno Langmann Limited is also a regulated party of CCPERB. In 2021 the gallery applied to the Canada Border Services Agency for an export permit on a 1946 Emil Nolde watercolour, <i>Seascape with Steamer and Sailboat</i>. The CBSA refused, on the advice of a National Gallery of Canada Expert Examiner. The gallery applied to CCPERB for review. The case is documented as a CCPERB Board Decision in the 2021–22 Annual Report.
+      </li>
+      <li class="leap">
+        <span class="step-num">↓</span>
+        <b>This is the leap.</b>
+        The committee CCPERB names as its only permitted alternative to two arm's-length appraisals is led, in part, by a member of a Vancouver gallery family that is itself a regulated party of CCPERB. The first Vancouver dealer (Monte Clark, Case 02 step 04) sits on the certifying board itself. The second (the Langmanns, here) leads the committee that certifies the substitute. Together they describe both ends of the appraiser-pool architecture the regime depends on the public not seeing.
+      </li>
+      <li>
+        <span class="step-num">05</span>
+        <b>This is, again, not an allegation.</b>
+        The Langmanns are credentialed art professionals operating well within the published rules, and have been for two generations. The structural fact is the absence of a public registry that would allow the public to read which appraisals from which committees attached to which gifts at which valuations. The Order Paper question turns each of those into a record.
+      </li>
+    </ol>
+  </section>
+</article>
+
+
+<article id="case-05" class="case">
+  <header class="casehead">
+    <div class="case-id">Case 05 · Wilson</div>
+    <div class="case-amount"><span class="currency">$</span>1,500,000,000</div>
+    <div class="case-strap">The same class, a different channel. Cases 01–04 describe what this class uses to convert its art. This case names what the same class uses to convert its land — with the same Vancouver geography and, in one documented node, the same names.</div>
+  </header>
+
+  <!-- 01 THE ACCUMULATION -->
+  <section>
+    <h2><span class="num">01 · The accumulation</span>Ten years of quiet parcel-buying along one corridor</h2>
+
+    <p class="lede">Chip Wilson, founder of Lululemon, established Low Tide Properties in 2011 with David Ferguson. Public stated target: <b>$1.5 billion</b> in Metro Vancouver holdings by 2026. The company does not strata. What it buys, it holds. The early portfolio concentrates on one corridor.</p>
+
+    <table>
+      <thead>
+        <tr><th>Year</th><th>Parcels</th><th>Location</th><th class="num">Acquisition price (CAD)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2012</td><td>10 lots</td><td>828–868 East Hastings (south side)</td><td class="num">$7,250,000</td></tr>
+        <tr><td>2013</td><td>Additional lots</td><td>855–895 East Hastings (north side)</td><td class="num">$10,700,000</td></tr>
+        <tr><td>2013–16</td><td>Three-storey building, 869–881 East Hastings</td><td>Strathcona / DTES edge</td><td class="num">— not disclosed</td></tr>
+        <tr class="highlight"><td>2026 target</td><td>All holdings</td><td>Metro Vancouver</td><td class="num">$1,500,000,000</td></tr>
+      </tbody>
+    </table>
+
+    <p>By 2016, non-profit tenants at 877 East Hastings — the same block — had been displaced by rent increases following renovation. The accumulation precedes the rezoning of the corridor that lifts the land-value baseline. The rezoning arrives twelve to thirteen years later, under a Council the same principal helped fund into office.</p>
+  </section>
+
+  <!-- 02 THE INSTALLATION -->
+  <section>
+    <h2><span class="num">02 · The installation</span>From private capital to municipal legislature in two election cycles</h2>
+
+    <p>In 2022, Wilson contributed <b>approximately $380,000</b> personally, and coordinated further high-value contributions, to <b>Pacific Prosperity Network</b> — a third-party advertising vehicle that went on to be <b>fined by Elections BC</b> for advertising violations targeting left-leaning candidates. PPN sponsored the premiere and panel for the <i>Vancouver Is Dying</i> documentary, which framed the Downtown Eastside as a public-safety crisis requiring abstinence-oriented intervention. PPN also used its Facebook page to raise funds for The Last Door Recovery Society, whose founder publicly characterizes harm reduction as "putting a bandaid on a bullet hole." Last Door's Recovery Capital Conferences have become a cross-provincial hub for conservative abstinence-oriented drug policy announcements.</p>
+
+    <p>In October 2022, ABC Vancouver — the civic slate that emerged from this narrative-and-funding environment — took the Vancouver municipal election:</p>
+
+    <table>
+      <thead><tr><th>Body</th><th>Seats</th><th>Outcome</th></tr></thead>
+      <tbody>
+        <tr><td>Mayor</td><td>1 of 1</td><td>Ken Sim</td></tr>
+        <tr><td>City Council</td><td>7 of 10</td><td>Majority</td></tr>
+        <tr><td>Park Board</td><td>6 of 7</td><td>Majority</td></tr>
+        <tr><td>School Board (VSB)</td><td>5 of 9 on election night → 4 of 9 after 2024 departure</td><td>Plurality</td></tr>
+      </tbody>
+    </table>
+
+    <p>Senior Low Tide leadership holds the formal developer-lobby channel to the same Council. Adam Mitchell, Senior Vice President, Low Tide Properties (since May 2024; prior VP Asset Management 2021–24) concurrently <b>co-chairs the Government Relations Committee of NAIOP Vancouver</b> — the commercial real-estate developers' industry lobby, whose remit is direct interface with City Hall on zoning, Development Cost Levies, and ODP shape. He also sits on the boards of the Urban Land Institute BC, Catalyst Communities, and the Mount Pleasant Business Improvement Association.</p>
+  </section>
+
+  <!-- 03 THE WALK -->
+  <section>
+    <h2><span class="num">03 · The walk</span>How the accumulated parcels became developable, in sequence</h2>
+
+    <ol class="walk">
+      <li>
+        <span class="step-num">01</span>
+        <b>Accumulate at commercial-corridor prices.</b>
+        2012–2013 purchases along the 800-block of East Hastings at $7.25M and $10.7M. The corridor is zoned commercial / SRO. No residential tower pathway yet.
+      </li>
+      <li>
+        <span class="step-num">02</span>
+        <b>Fund the narrative frame.</b>
+        2022 election cycle: $380K personal + coordinated contributions to Pacific Prosperity Network; PPN sponsors <i>Vancouver Is Dying</i>, fundraises for The Last Door. DTES residents are reframed from objects of housing policy into objects of treatment and cleanup.
+      </li>
+      <li>
+        <span class="step-num">03</span>
+        <b>Install the slate.</b>
+        October 2022 — ABC Vancouver sweeps Council, Park Board, and plurality on VSB. Mayor, 7 of 10 Councillors, 6 of 7 Park Commissioners are now from the slate whose narrative-and-funding environment was seeded by PPN.
+      </li>
+      <li>
+        <span class="step-num">04</span>
+        <b>Harden the narrative into law.</b>
+        Early 2025 — BC's decriminalization pilot rolled back under sustained political pressure consistent with the "recovery industry" framing.
+      </li>
+      <li>
+        <span class="step-num">05</span>
+        <b>Upzone the corridor.</b>
+        December 9, 2025 — ABC Council passes the DEOD and FC-1 (Thornton Park) upzoning. Inclusionary social-housing requirement cut from <b>60% → 20%</b>. Maximum height raised to <b>100 m (~32 storeys)</b>. Of the 20% social-housing units, only 20% are at shelter rates — <b>4% of total units</b>. Land-value multiple on the accumulated parcels follows automatically.
+      </li>
+      <li>
+        <span class="step-num">06</span>
+        <b>Unlock the larger pool.</b>
+        January 2026 — the draft of the Vancouver Official Development Plan is revised to <b>remove the language prohibiting residential development on school sites</b>. The change is identified publicly by CityHallWatch (Melanie Cheng analysis, March 2026) as a stealth edit between the October 2025 and January 2026 drafts. The ODP is approved at public hearing March 10–11, 2026. The Vancouver School Board, under ABC plurality, is the owner and manager of the parcel pool newly unlocked.
+      </li>
+      <li class="leap">
+        <span class="step-num">↓</span>
+        <b>This is the leap.</b>
+        Cases 01–04 describe a federal tax-expenditure architecture that converts appreciated art into public subsidy and private legitimacy over a 40-year cycle. This case describes a parallel municipal channel that converts accumulated land into private appreciation over a 2–4 year cycle, operated by the same class. No charitable framing, no naming rights, no arm's-length appraisal. The subsidy comes directly from zoning uplift on privately-held land, underwritten by the devaluation of social-housing requirements on public-hearing record. The information asymmetry that makes it work is structural: Low Tide's Sr VP concurrently chairs the developer-lobby channel to the Council that passed the upzoning.
+      </li>
+      <li>
+        <span class="step-num">07</span>
+        <b>This is not an allegation either.</b>
+        Every instrument above is public: campaign finance filings, Elections BC fine records, Council agendas, public-hearing transcripts, ODP drafts, NAIOP committee rosters. Every instrument except the one that would join them: an itemized cross-reference between the accumulated parcels, the zoning lift they received, and the political outlay that produced the policy. That cross-reference is the municipal analogue of the CCPERB transaction register the Order Paper asks for. It can be obtained the same way: by asking.
+      </li>
+    </ol>
+  </section>
+</article>
+
+
+<section id="close" class="case">
+  <header class="casehead">
+    <div class="case-id">→ The pattern</div>
+    <div class="case-amount" style="font-size: 28pt;">five cases</div>
+    <div class="case-strap">Different surfaces, the same architecture. The disclosure question that survives all five.</div>
+  </header>
+
+  <!-- ONE PATTERN -->
+  <section>
+    <h2><span class="num">01 · The blackout</span>What the four cases share</h2>
+
+    <p class="lede">The five cases differ in surface and converge in structure. Rennie shows the leap from market signal to self-ratified valuation. Audain shows the closed loop that achieves reflexivity through institutional architecture rather than through valuation. Heffel shows the regime's adaptive response when tested in court — not contraction, but legislated expansion of permissibility. Langmann shows that the appraiser pool the regime depends on the public not seeing has, in fact, an address: a Vancouver gallery family that holds leadership of the only committee whose single appraisal substitutes for two. Wilson shows that the same BC capital class operating CCPERB's slow federal channel is simultaneously operating a fast municipal channel that converts accumulated land into private appreciation on a four-year cycle — same city, same class, no charitable framing required.</p>
+
+    <p>What is common across all four is that the actual mechanics driving the public subsidy remain entirely off the books. The following cannot be obtained by any normal documentary route:</p>
+
+    <ul class="unknowns">
+      <li>The certified fair market value of any individual donated work.</li>
+      <li>The name of the appraiser, or appraisers, supplying any individual valuation submitted to CCPERB.</li>
+      <li>Whether the appraisal was submitted under the ADAC / NAAB single-appraisal exemption (available at the $50,000+ threshold).</li>
+      <li>Whether any current or former CCPERB board member supplied the appraisal — including a board member dealing in the same market category.</li>
+      <li>What the donor originally paid for the work, when, or through which dealers.</li>
+      <li><b>The appreciation differential</b> — the gap between the donor's cost basis and the certified FMV — which is the actual structural quantity the regime is subsidizing.</li>
+      <li>The proportion of all certifications associated with British Columbia recipient institutions, or with British Columbia donors.</li>
+      <li>The aggregate certified value before and after the March 2019 elimination of the "national importance" criterion for tax certification.</li>
+    </ul>
+
+    <p>This is not an oversight; it is the design. Each item above is data the federal government already holds. None of it is published. The Order Paper question already in the office turns each one of those items into a matter of public record.</p>
+  </section>
+</section>
+
+
+<section>
+  <h2><span class="num">02 · The consequences</span>What is actually being subsidized when the regime is treated as "just fine art"</h2>
+
+  <p class="lede">The defence of the regime is that it is small, niche, cultural — a tax instrument for a tiny class of objects most Canadians will never own or even see. The $17.5M attached to one named gift in Case 01 sounds, in that frame, almost benign. Drawn down to where the funds and the architecture actually flow, six recapture vectors are visible.</p>
+
+  <ol class="vectors">
+    <li>
+      <h3 class="vector-name">Mark-to-market lift on the donor's unsold portfolio</h3>
+      <p>A CCPERB certification at a specified valuation establishes an appraisal-of-record. That valuation flows downstream as a comparable for the artist's market: the donor's remaining holdings — and the holdings of every other collector of the same artist — become more valuable as a result of the certification itself. The donor is paid twice. Once as a tax credit on the gifted work. Once as appreciation on the held portfolio. The Audain 2026 gift of 37 Riopelles at $76.9M sets a public valuation pole the rest of the international Riopelle market draws against.</p>
+    </li>
+
+    <li>
+      <h3 class="vector-name">Capital-gains avoidance, compounded with the credit</h3>
+      <p>Certified cultural property is the only major class of donated appreciated property for which capital-gains inclusion is reduced to <b>zero</b>. Pair this with the donation credit and the donor monetizes the full fair market value of an appreciated asset without ever realizing it as taxable income. The longer the holding period and the larger the appreciation, the larger the public's share of the substitution. The regime is, in effect, a wealth-preservation channel for appreciated assets that would otherwise be subject to disposition tax.</p>
+    </li>
+
+    <li>
+      <h3 class="vector-name">Naming and legitimacy on publicly-supported institutions the public never sees the inside of</h3>
+      <p>The receiving institution is itself, in most cases, partly publicly funded — the National Gallery of Canada (federal Crown corporation), the Vancouver Art Gallery (BC and City of Vancouver capital and operating grants, including a 99-year city land lease at the new building site valued at $100M), the Polygon Gallery (BC capital funding into the rebuilt facility). Naming rights, board representation, and curatorial influence travel with the gift. The donor pays a fraction of the certified value out of post-tax cash and receives, in addition to a public-funded tax credit, permanent identification as the institution's principal benefactor — on infrastructure the public was already funding.</p>
+      <p>And the public, having paid for both the credit and the building, mostly does not see the gift. The National Gallery's own page reports roughly <b>1,200 works on public view at any given time, from a collection of more than 35,000 works of art</b> — about three percent — and that figure excludes the much larger photography (200,000+ items) and prints-and-drawings (27,000+ works) holdings, which are substantially in storage. The Vancouver Art Gallery's permanent collection holds <b>more than 13,000 works</b>; in March 2026 the gallery opened its first dedicated collection floor in more than two decades, displaying <b>just over 200</b> of them — about 1.5 percent. The remainder lives in environmentally-controlled storage funded by the public. By international peer comparison the Tate displays approximately 20 percent of its holdings, the Louvre 8 percent, the Guggenheim 3 percent. NGC and VAG sit at the bottom of that range.</p>
+      <p>The certified gift functions, structurally, as a transfer of ownership into a publicly-funded archive whose holdings are validated by their being there, not by being shown. The certification creates the consensus that the work is canonical. The consensus sustains the certification of the next work. The vault is the chamber in which both happen. The public funds the chamber.</p>
+    </li>
+
+    <li>
+      <h3 class="vector-name">Curatorial capture and market-making for the donor's category</h3>
+      <p>Donor capital sustains the institutions whose curators select which artists become canonical, which works become authoritative, and which national representations are made. Selection drives valuation. The curator at the Polygon Gallery — an institution Audain co-funded — curated Stan Douglas as Canada's 2022 Venice Biennale representative. International recognition lifts the artist's market. Future certifications of Vancouver-school photo-conceptualism — works held by the same donor class that funded the institutions whose curators drove the recognition — clear higher valuations as a result. The market-making for the donors' own category is paid for, in part, by the public.</p>
+    </li>
+
+    <li>
+      <h3 class="vector-name">Downstream legitimation of upstream BC capital</h3>
+      <p>In British Columbia, the wealth flowing through cultural-property certification sits structurally downstream of the real-estate sector — the sector the Cullen Commission (2019–2022) documented as the principal corridor in this province for capital flight and proceeds-of-crime laundering. Several of the largest cultural-property donors in the province are themselves principals of major real-estate developers. The Cultural Property regime functions, structurally, as one above-ground federally-certified legitimation channel for wealth generated upstream. The two systems together describe an end-to-end pipeline: capital enters BC through real estate; legitimation completes through art; the public underwrites the legitimation step at approximately 77%.</p>
+    </li>
+
+    <li>
+      <h3 class="vector-name">The intergenerational transfer wave</h3>
+      <p>The cohort of named major Canadian cultural-property donors is now in active intergenerational transfer. Michael Audain is 88. Bob Rennie has stated his intent to resolve his collection's disposition before he turns 75. The Phil Lind estate is already executing (37 works to AGO, 2024; $1M endowment to Polygon, 2024). The CCPERB pipeline is the most tax-efficient mechanism in Canadian law for moving collections out of estate. The next ten to twenty years of cultural-property certifications will be the single largest wealth-transfer event of this kind in Canadian history. At ~77% effective subsidy, the public is the largest single counterparty to that transfer and has no transaction-level visibility into any of it.</p>
+    </li>
+
+    <li>
+      <h3 class="vector-name">Logistics and storage as the unmonitored shared vault</h3>
+      <p>Underneath the certifications and the institutional collections sits a private logistics layer — crating, transport, climate-controlled storage, chain-of-custody documentation. In British Columbia the incumbent provider is Denbigh Fine Art Services (Vancouver, founded 1985), as of 2020–21 a subsidiary of the French art-logistics conglomerate Chenue. BC's incumbent high-value art-handling firm is now under European parent control.</p>
+      <p>Two facts about how this layer mixes with the public ledger. The Vancouver Art Gallery's own Head of Museum Services, Jenny Wilson, appears in a published testimonial on Denbigh's website characterizing the VAG–Denbigh arrangement as <i>"more than a client relationship, it's a partnership"</i>. VAG's own annual reports and audited financial statements do not name Denbigh, do not disclose the contract value, and do not itemize the off-site storage arrangement. The supplier publishes the relationship. The publicly-funded buyer does not.</p>
+      <p>Storage need is, simultaneously, the explicit public-record justification for the new VAG building. Materials going back to the 2004 master plan name "more exhibition and storage space" as the primary driver. Current projected cost: <b>$600M</b> (up from $400M), of which approximately <b>$179M</b> is direct public commitment — $100M City of Vancouver land lease at the new Larwill Park site, $50M Province of BC, $25M federal Infrastructure Canada (Green and Inclusive Community Buildings program), $4.3M Department of Canadian Heritage. The public is being asked to fund the building substantially because of storage need. The current solution to that storage need — payments to private logistics firms — does not appear, line-itemed, in the materials supporting the funding request.</p>
+      <p>The same private firms typically handle both sides of the eventual donation pipeline — works in transit for private collectors and works on hand for the public institutions those collectors will eventually donate to. A work can sit in private storage on private account for years or decades before the CCPERB certificate is issued and ownership formally transfers to the public institution. This is functionally the structure that, internationally, is operated through freeports (Geneva, Singapore, Luxembourg, Newark) — high-value art held as untaxed, ownership-flexible, collateralizable wealth in long-term storage. Chenue, Denbigh's new parent, operates in that European context.</p>
+      <p>The logistics layer is the unmonitored shared vault in which public and private capital take custody of the same physical works on contracts neither party fully publishes. It is, structurally, the bank.</p>
+    </li>
+  </ol>
+
+  <p>The "this is just fine art" defence depends on each of these vectors remaining invisible. Disclosure of the underlying transactions converts the regime from a niche cultural instrument into what it actually is: a federally-administered wealth-preservation, market-making, and intergenerational-transfer architecture, attached to the same donor and developer class on whom comparable public-funds questions are already on the record.</p>
+
+  <p>The defence has a second, deeper register, and it is part of why the architecture works. Artists in Canada are themselves economically marginalized — undercompensated, often precarious, frequently the labour underneath the certified valuations they have no upside in. The institutions that hold and certify the gifts speak in the heroic register of cultural stewardship. To question the certification architecture is, in that register, to attack the artists and the people who love them. The reflex is the regime's most reliable rhetorical perimeter, more durable than any of its statutory defences, because it converts a question about wealth into a question about culture and a question about money into a question about taste.</p>
+
+  <p>The artists themselves have a separate, prior claim against the same architecture. They are the labour whose work is repeatedly recertified at multiples of what the work earned them in the first place, without participation in the appreciation. Disclosure benefits them. The question on your office's paper does not punch down. It asks the federal government to publish the data the federal government already holds about its own most generous tax expenditure. It is not a question about art. It is a question about the regime that uses art as cover.</p>
+
+  <p>Things being what they are. The architecture above is decades old, federally administered, internationally normal, and structurally insulated from the kind of single-instrument change that one written question to a Minister can produce. Nothing in this briefing claims that disclosure of CCPERB transaction-level data, on its own, dismantles the regime. It does not.</p>
+
+  <p>What it does is make the regime legible. Once the per-certification data is on the public record — appraiser, value, recipient, geography, exemption usage, fiscal year — every downstream conversation has a citation. The Office of the Auditor General, FINTRAC, public-finance researchers, the press, artist organizations, comparable provincial bodies, and any future committee with jurisdiction over related questions all gain ground they currently lack. The next decade of pressure on this architecture will be built on whichever data exists publicly during that period.</p>
+
+  <p>The question on your office's paper does not solve any of the seven vectors above. It starts the blood pumping in the right direction. Given the scale of what is currently invisible, that is — to say the least — where to begin.</p>
+</section>
+
+
+<section>
+  <h2><span class="num">03 · The question</span>How the Order Paper closes the leap, in all four cases</h2>
+
+  <p>Each clause of the question already in your office is paired to a specific piece of what the four cases show is currently unknowable. The question does not name any donor or appraiser. It asks for the structural data that would let the public read the regime independently of who is appearing in it.</p>
+
+  <ol class="mapping">
+    <li><b>Per-certification FMV, recipient, fiscal year</b> · publishes the per-work value distribution inside the Rennie $22.8M, the Audain $76.9M, and every other certification of the past decade.</li>
+    <li><b>Appraiser names per certification</b> · names who signed the appraisals.</li>
+    <li><b>CCPERB-board-member and gallery-affiliated appraiser frequency</b> · tests the concentrated-pool problem the Audain case names structurally, the current Vancouver-dealer board member illustrates literally, and the Langmann case shows extending into the only permitted bypass committee as well.</li>
+    <li><b>ADAC / NAAB single-appraisal exemption usage at $50K+</b> · shows how often the one-substitutes-for-two pathway has been used, on which gifts, and at what aggregate certified value — the precise mechanism Case 04 names.</li>
+    <li><b>BC share of certifications</b> · reveals the Vancouver-collector and Vancouver-appraiser concentration the Rennie / Lind / Audain / Langmann cluster makes structurally visible.</li>
+    <li><b>Rationale for non-disclosure</b> · forces the Minister to articulate on the record why a multi-million-dollar public expenditure attached to a single named gift carries less disclosure than a $1,000 election contribution.</li>
+  </ol>
+
+  <div class="scope">
+    <b>Scope</b>
+    This briefing makes no allegation of impropriety against Bob Rennie, Michael Audain, Heffel Fine Art Auction House, Uno Langmann Limited, Jeanette or Uno Langmann personally, the Art Dealers Association of Canada, the National Gallery of Canada, the Musée national des beaux-arts du Québec, the Audain Art Museum, the appraisers involved, or CCPERB. The question is structural and applies regardless of any individual party's bona fides: a federal tax expenditure that subsidizes ~77% of a self-selected valuation, where the valuation pool the public cannot identify, with no transaction-level registry. The cases here are the largest, most recent, named, and CCPERB-attributed instances currently in the public record. The Order Paper question does not require the Minister to investigate any donor or any appraiser. It requires the Minister to publish data the government already holds.
+  </div>
+</section>
+
+
+<section class="sources">
+  <h3>Sources — every numerical claim above is footnoted here</h3>
+
+  <p><b>Case 01 · Rennie donations.</b> The Globe and Mail, "Bob Rennie donates $22.8-million worth of contemporary art to National Gallery of Canada" (14 July 2025); The Globe and Mail, "Bob Rennie and family donate two dozen contemporary artworks to National Gallery of Canada" (March 2026); The Art Newspaper, "National Gallery of Canada receives donation of 24 works from collector Bob Rennie" (11 March 2026); ARTnews (12 March 2026); NGC press releases (2025 $22.8M / 61 works; 2026 24 works); The Art Newspaper, "National Gallery of Canada receives major gift of contemporary art from collector Bob Rennie" (9 May 2017).</p>
+
+  <p><b>Case 01 · Auction realizations · Jeff Wall.</b> Christie's New York, 8 May 2012 (<i>Dead Troops Talk</i> · US$3,666,500, world record for a photograph; CBC News, Globalnews.ca coverage). Heffel Fine Art Auction House results pages: <i>Park Drive</i> (1994), Lot 42, Fall Sale 27 Nov 2014, $259,600 CAD; <i>Diagonal Composition II</i>, Post-War &amp; Contemporary, 24 Nov 2022, $121,250 CAD.</p>
+
+  <p><b>Case 01 · Auction realizations · Rodney Graham.</b> Heffel results: <i>Oxfordshire Oak, Swalcliffe</i> (1990), 30 May 2018, $175,250 CAD; <i>Old Growth Cedar #1 (Seymour Reservoir)</i> (2002), 29 May 2019, $73,250 CAD. Phillips results: <i>Paradoxical Western Scene</i> (2006), Lot 454, 20th C. &amp; Contemporary Day Sale, NY, US$56,250; <i>City Self / Country Self</i>, London, £56,250; <i>Cactus Fan</i>, London, £38,100; <i>Cedars, Stanley Park</i>, London, £28,750; <i>Willow, Mullem</i>, £31,500.</p>
+
+  <p><b>Case 02 · Audain donations and roles.</b> Wikipedia (Michael Audain); Audain Foundation (audainfoundation.com); Audain Art Museum (audainartmuseum.com, Wikipedia); CBC News, "Why Michael Audain decided to open an art gallery in Whistler"; The Globe and Mail, "Michael Audain donates 37 works by Riopelle to Musée national des beaux-arts du Québec" (2026); The Art Newspaper, "Emily Carr painting, unseen for more than a half-century, acquired by Canada's Audain Art Museum" (15 March 2023); The Art Newspaper, "Early Emily Carr watercolour acquired by Canada's Audain Art Museum" (17 October 2024); PR Newswire, "National Gallery of Canada Honours Michael Audain and Yoshiko Karasawa for a Decade of Philanthropy"; CBC News, "VAG receives $100M Audain gift" (2021).</p>
+
+  <p><b>Case 02 · Riopelle auction floor.</b> Heffel: <i>Vent du nord</i> (1952–53), $7.4M, 2017 (world record); <i>Verts ombreuses</i> (1949), $2,761,250, 2024; <i>Carnaval II</i> and <i>Incandescence</i> (both 1953), $2,281,250 each, 2019; <i>Sans titre</i> (1953), $2.8M with fees, 2022. Sources: Heffel Exceptional Results page; The Art Newspaper, "Riopelle outshines Motherwell at Canadian auction house Heffel's major spring sales" (2 June 2022); newswire.ca / Canadian Art coverage of Heffel record sales.</p>
+
+  <p><b>Case 02 · Monte Clark · CCPERB board membership.</b> CCPERB official "Meet the Board" page (ccperb-cceebc.gc.ca); Monte Clark Gallery (monteclarkgallery.com — gallery founded 1992, located in Vancouver's Armoury District since 2025); Art Dealers Association of Canada (past board membership cited in CCPERB biography).</p>
+
+  <p><b>Case 03 · Heffel v. Canada (Caillebotte).</b> The Art Newspaper, "Contested export of a Caillebotte painting raises questions about Canadian cultural law" (25 June 2019); The Globe and Mail, "Foreign art can be nationally important to Canada and blocked from export, Federal Court of Appeal rules"; The Globe and Mail, "Why was this painting deemed too precious to sell abroad? Unravelling the bureaucracy of Canada's art-export rules"; <i>Canada (Attorney General) v. Heffel Gallery Limited</i>, 2019 FCA 82; Federal Court of Appeal opinion authored by Justice Richard Boivin (16 April 2019); lower court decision, Justice Michael Manson, June 2018; Lavery, Lexology, Segev LLP, Canadian Lawyer practitioner commentaries on the case; Canadian Art, "Auction House Loses, Museums Win in Federal Court Appeal."</p>
+
+  <p><b>Case 03 · 2019 budget elimination of "national importance" criterion.</b> March 2019 federal budget; Department of Finance Canada budget materials; commentary in The Art Newspaper, Lexology, and Lavery noting that the change applies to tax certification while retaining the criterion for export licences.</p>
+
+  <p><b>Case 04 · Uno Langmann Limited and the ADAC Appraisal Committee.</b> Uno Langmann Limited Fine Art (langmann.com — gallery founded 1977, located 2117 Granville Street, Vancouver); UBC Library Featured Collections, Uno Langmann biography (collections.library.ubc.ca/featured-collections/langmann/about-langmann/); Art Dealers Association of Canada member listing (ad-ac.ca/uno-langmann-limited-fine-art) and "Learn More About Appraisals" page (ad-ac.ca/learn-more) — including the verbatim statement that "ADAC is the only fine art appraisal service permitted by CCPERB to prepare one appraisal report for donations over CAD $50,000 in value"; ADAC past presidents list confirming Uno Langmann as President in 2007.</p>
+
+  <p><b>Case 04 · Nolde export refusal (2021–22).</b> CCPERB Annual Report 2021–2022, Board Decision: <i>Seascape with Steamer and Sailboat</i> (Emil Nolde, 1946) — applied for export by Uno Langmann Limited, refused by CBSA on advice of NGC Expert Examiner, reviewed by CCPERB; published at ccperb-cceebc.gc.ca/en/review-of-refused-export-permits/decisions/nolde.html.</p>
+
+  <p><b>Tax mechanics across all cases.</b> KPMG, <i>Make Your 2025 Charitable Donations Tax-Effective</i>; BDO Canada, <i>How donating securities to charity reduces tax</i>; CRA, P113 <i>Gifts and Income Tax 2025</i>; CRA, <i>Selling or donating certified Canadian cultural property</i>; CCPERB home (ccperb-cceebc.gc.ca); CCPERB 2022–2023 Annual Report; CCPERB <i>About Fair Market Value</i> and <i>About Appraisals</i> guidance pages; Library and Archives Canada <i>Directive on Monetary Appraisals and the Certification of Cultural Property</i>; <i>Cultural Property Export and Import Act</i>; Canadian Bar Review, "Gifting Cultural Property in Canada: Testing a Tax Expenditure" — overview of Whent, Francoeur, Aikman, Malette, Nash case law on FMV challenges.</p>
+
+  <p><b>Display ratios at NGC and VAG.</b> National Gallery of Canada, <i>Collecting Areas</i> page (gallery.ca/collection/collecting-areas) — "more than 35,000 works of art, with 1,200 of the most significant on view within the Gallery at any one time"; Wikipedia (<i>National Gallery of Canada</i>) on the broader 90,000+-work collection; Artdog Istanbul interview citing NGC figures (~2,000 of ~90,000 on display, ~96% in storage). Vancouver Art Gallery, <i>The Collection</i> page (vanartgallery.bc.ca/the-collection/) — 13,000+ works, only "a small fraction" on display; My VanCity / Miss604 / BroadwayWorld coverage of the March 2026 opening of the new collection floor (200+ works, "first dedicated collection floor in more than two decades"). International peer comparators: Quartz, "Why is so much of the world's great art in storage?" and Sagama Publishing summary of the BBC Culture article by Kimberly Bradley (Tate ~20%, Louvre ~8%, Guggenheim ~3%, Berlinische Galerie ~2%).</p>
+
+  <p><b>The art-logistics layer.</b> Denbigh Fine Art Services (denbighfas.com — Vancouver, 155 W 7th Avenue, founded 1985); the published testimonial from Jenny Wilson, Head of Museum Services, Vancouver Art Gallery, characterising the VAG–Denbigh arrangement as "more than a client relationship, it's a partnership," appears on Denbigh's marketing site. Chenue acquisition of Denbigh: chenue.com/en/acquisition-de-denbigh-fine-art-services/ (announcement page, ~2020–21). VAG annual reports (vanartgallery.bc.ca/annual-reports/) and 2020 audited financial statements (KPMG, vanartgallery.bc.ca/wp-content/uploads/2020/11/2020-06-30-Vancouver-Art-Gallery-Association-Financial-Statements-AR.pdf) — neither names Denbigh nor itemises off-site storage. New-building rationale and budget: VAG, <i>The Future of the Vancouver Art Gallery</i> (vanartgallery.bc.ca/future-gallery/); BC government release "Province boosts support for new Vancouver Art Gallery" (news.gov.bc.ca/releases/2022TACS0047-001531) — $50M Province of BC; The Art Newspaper, "Vancouver Art Gallery launches construction of new $295m building" (17 September 2023); The Globe and Mail, "Vancouver Art Gallery reassesses its grand ambitions for new building" — $400M → $600M cost increase and the rescoping; CBC News, "Future home of the Vancouver Art Gallery turned back into parking lot"; Infrastructure Canada Green and Inclusive Community Buildings (GICB) program — $25M federal commitment; Department of Canadian Heritage — $4.3M; City of Vancouver Larwill Park 99-year land designation valued at ~$100M (City of Vancouver council reports). Workspace cross-reference: <code>yami:working/2026-04-14-chenue-denbigh-acquisition.md</code> (operator-attested structural finding, working tier).</p>
+
+  <p><b>Freeports as international peer context.</b> Geneva Freeport (Ports Francs et Entrepôts de Genève) — multi-billion-dollar art-storage facility extensively documented in international press (Bouvier affair, Le Temps, Reuters); Singapore Freeport, Luxembourg Freeport, and Newark NJ Freeport (operated by ARCIS) as comparable jurisdictions. The freeport functions as untaxed, ownership-flexible, long-term high-value-asset storage. Chenue (the parent of Denbigh as of 2020–21) operates in the European art-logistics market in which freeport storage is a normal part of the service catalogue.</p>
+
+  <p><b>The wider Vancouver collector circle.</b> Comparable recent gifts in the same orbit, not built into the cases above but cited for proportion: Phil Lind estate, 37 works to AGO 2024 (including Wall, Douglas, Graham, Arden) plus $1M endowment to the Polygon Gallery; Chan family, $40M cash to the new Vancouver Art Gallery; Audain Foundation / Polygon Homes, $4M founding gift to the Polygon Gallery (formerly Presentation House) 2014.</p>
+</section>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add('js-enabled');
+  
+  const tabs = document.querySelectorAll('.tabs a');
+  const views = new Map();
+  
+  // Assign ids and collect targets
+  const titleSec = document.querySelector('.title');
+  if (titleSec && !titleSec.id) titleSec.id = 'title';
+  
+  tabs.forEach(t => {
+    const id = t.getAttribute('href').substring(1);
+    const el = document.getElementById(id);
+    if (el) views.set(id, el);
+  });
+  
+  // Tag the question section so it's easier to manipulate
+  // It's the only plain <section> under .sheet that isn't title, case, or sources.
+  document.querySelectorAll('.sheet > section:not(.case):not(.title):not(.sources)').forEach(el => {
+    el.classList.add('question-section');
+  });
+  
+  function showTab(id) {
+    if (!views.has(id)) id = 'title'; // default
+    
+    // Hide all major pages
+    document.querySelectorAll('.sheet > section, .sheet > article').forEach(el => {
+      el.style.display = 'none';
+    });
+    
+    // Show target
+    const target = views.get(id);
+    if (target) {
+      target.style.display = 'block';
+      
+      // The "close" tab encompasses Pattern, Question, and Sources
+      if (id === 'close') {
+        const questionSec = document.querySelector('.question-section');
+        if (questionSec) questionSec.style.display = 'block';
+        
+        const sourcesSec = document.querySelector('.sources');
+        if (sourcesSec) sourcesSec.style.display = 'block';
+      }
+    }
+    
+    // Update active tab styles
+    tabs.forEach(t => {
+      if (t.getAttribute('href') === '#' + id) {
+        t.classList.add('active');
+      } else {
+        t.classList.remove('active');
+      }
+    });
+
+    window.scrollTo(0, 0);
+  }
+
+  tabs.forEach(t => {
+    t.addEventListener('click', e => {
+      setTimeout(() => showTab(t.getAttribute('href').substring(1)), 10);
+    });
+  });
+
+  window.addEventListener('hashchange', () => {
+    showTab(window.location.hash.substring(1));
+  });
+
+  const initial = window.location.hash ? window.location.hash.substring(1) : 'title';
+  showTab(initial);
+});
+</script>
+
+
+<div class="colophon">
+  <span>Hon. Jenny Kwan MP · Vancouver East</span>
+  <span>Vancouver · April 2026</span>
+</div>
+
+
+</div>
+</body>
+</html>
