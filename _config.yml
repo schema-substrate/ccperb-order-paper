@@ -1,0 +1,9 @@
+title: BC Nexus — Research Dossier
+description: BC Hospital / Arts / Developer Nexus
+theme: minima
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+plugins:
+  - jekyll-seo-tag
